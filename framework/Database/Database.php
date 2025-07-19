@@ -28,7 +28,7 @@ class Database
         $charset = self::$config['connections'][self::$connection]['charset'];
 
         if (empty(self::$connection) || empty($host) || empty($port) || empty($database) || empty($charset)) {
-            throw new Exception('Database configuration is incomplete.');
+            throw new Exception('Configuracoes de banco de dados incompletas.');
         }
         return sprintf(
             '%s:host=%s;port=%s;dbname=%s;charset=%s',
