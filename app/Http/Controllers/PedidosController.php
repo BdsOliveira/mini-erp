@@ -8,7 +8,7 @@ class PedidosController extends BaseController
 {
     public function index()
     {
-        var_dump("Displaying all orders.");
+        return $this->view('pedidos/index.php');
     }
 
     public function create()

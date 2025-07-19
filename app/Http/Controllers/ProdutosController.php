@@ -8,12 +8,12 @@ class ProdutosController extends BaseController
 {
     public function index()
     {
-        var_dump("Displaying all products.");
+        return $this->view('produtos/index.php');
     }
-
+    
     public function create()
     {
-        var_dump("Creating a new product.");
+        return $this->view('products/form.php');
     }
 
     public function store()

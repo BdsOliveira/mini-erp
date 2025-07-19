@@ -8,7 +8,7 @@ class EstoqueController extends BaseController
 {
     public function index()
     {
-        var_dump("Displaying all stock items.");
+        return $this->view('estoque/index.php');
     }
 
     public function create()
