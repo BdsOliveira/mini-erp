@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Framework\View;
+namespace Framework\View\Traits;
 
 use Twig\Environment;
 use Twig\Lexer;
@@ -16,27 +16,28 @@ trait HasTemplate
 
     public function __construct()
     {
-        $loader = new FilesystemLoader('/../resources/views');
+        $loader = new FilesystemLoader(__DIR__ . '/../../../resources/views/');
 
         $this->twig = new Environment($loader);
 
         $lexer = new Lexer(
             $this->twig,
-            [
-                $this->functions(),
-            ]
+            $this->functions(),
         );
 
         $this->twig->setLexer($lexer);
     }
 
-    public function view(string $template, array $data = []): string
+    public function view(string $template, array $data = []): void
     {
-        return $this->twig->render($template, $data);
+        echo $this->twig->render($template, $data);
     }
 
     public function functions(): array
     {
+        if (!function_exists('dd')) {
+            require_once __DIR__ . '/../functions/dd.php';
+        }
         return [
             $this->twig->addFunction(new TwigFunction('dd', fn(array $data) => dd($data))),
         ];

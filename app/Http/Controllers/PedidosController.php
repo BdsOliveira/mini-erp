@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-class PedidosController
+class PedidosController extends BaseController
 {
     public function index()
     {

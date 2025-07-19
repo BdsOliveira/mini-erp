@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-class ProdutosController
+class ProdutosController extends BaseController
 {
     public function index()
     {

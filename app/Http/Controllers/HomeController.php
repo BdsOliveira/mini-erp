@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-class HomeController
+class HomeController extends BaseController
 {
     public function index()
     {
-        var_dump("Welcome to the Home Page!");
+        return $this->view(
+            'index.php',
+        );
     }
 }

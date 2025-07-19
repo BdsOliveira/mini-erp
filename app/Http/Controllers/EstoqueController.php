@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-class EstoqueController
+class EstoqueController extends BaseController
 {
     public function index()
     {
