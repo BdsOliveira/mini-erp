@@ -1,7 +1,7 @@
 <?php
 
-use Framework\Http\Router;
+use Framework\Aplicattion;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-Router::run();
+Aplicattion::execute();
