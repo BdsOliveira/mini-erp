@@ -9,6 +9,11 @@ class ProdutosController
         var_dump("Displaying all products.");
     }
 
+    public function create()
+    {
+        var_dump("Creating a new product.");
+    }
+
     public function store()
     {
         var_dump("Storing a new product.");

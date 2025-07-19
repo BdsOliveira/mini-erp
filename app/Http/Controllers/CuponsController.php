@@ -9,6 +9,11 @@ class CuponsController
         var_dump("Displaying all cupons.");
     }
 
+    public function create()
+    {
+        var_dump("Creating a new cupom.");
+    }
+
     public function store()
     {
         var_dump("Storing a new cupom.");
