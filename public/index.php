@@ -1,6 +1,6 @@
 <?php
 
-use Framework\Router;
+use Framework\Http\Router;
 
 require __DIR__ . '/../vendor/autoload.php';
 

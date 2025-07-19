@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Framework;
+namespace Framework\Http;
 
 use Exception;
 
@@ -30,7 +30,7 @@ class Router
     public static function run(): void
     {
         try {
-            $routes = include __DIR__ . '/../routes/web.php';
+            $routes = include __DIR__ . '/../../routes/web.php';
             $requestMethod = Request::method();
             $requestPath = Request::path();
 
