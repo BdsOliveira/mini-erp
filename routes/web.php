@@ -8,7 +8,7 @@ use App\Http\Controllers\ProdutosController;
 
 return [
     "GET" => [
-        "/" => [HomeController::class, "index"],
+        "" => [HomeController::class, "index"],
 
         "/pedidos" => [PedidosController::class, "index"],
         "/pedidos/criar" => [PedidosController::class, "create"],
