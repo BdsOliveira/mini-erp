@@ -4,7 +4,7 @@
     "type": "project",
     "license": "MIT",
     "scripts": {
-        "server": [
+        "serve": [
             "Composer\\Config::disableProcessTimeout",
             "php -S localhost:8000 -t public"
         ]
