@@ -9,4 +9,10 @@ use Framework\View\Traits\HasTemplate;
 abstract class BaseController
 {
     use HasTemplate;
+
+    public function redirect($url)
+    {
+        header("Location: $url");
+        exit;
+    }
 }
