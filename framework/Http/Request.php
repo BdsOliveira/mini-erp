@@ -13,7 +13,7 @@ class Request
 
     public static function path(): string
     {
-        return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
+        return parse_url(rtrim($_SERVER['REQUEST_URI'], '/'), PHP_URL_PATH) ?? '/';
     }
 
     public static function query(): string
