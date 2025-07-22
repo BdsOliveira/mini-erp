@@ -8,7 +8,7 @@ class EstoqueController extends BaseController
 {
     public function index()
     {
-        return $this->view('estoque/index.php');
+        return $this->render('estoque/index.php');
     }
 
     public function create()

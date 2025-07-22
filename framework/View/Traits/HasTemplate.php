@@ -28,7 +28,7 @@ trait HasTemplate
         $this->twig->setLexer($lexer);
     }
 
-    public function view(string $template, array $data = []): void
+    public function render(string $template, array $data = []): void
     {
         echo $this->twig->render($template, $data);
     }

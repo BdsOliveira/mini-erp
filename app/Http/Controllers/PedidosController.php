@@ -8,7 +8,7 @@ class PedidosController extends BaseController
 {
     public function index()
     {
-        return $this->view('pedidos/index.php');
+        return $this->render('pedidos/index.php');
     }
 
     public function create()

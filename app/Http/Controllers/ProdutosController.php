@@ -19,12 +19,12 @@ class ProdutosController extends BaseController
     public function index(): void
     {
         $products = $this->productsRepository->getAll();
-        $this->view('produtos/index.php', ['products' => $products]);
+        $this->render('produtos/index.php', ['products' => $products]);
     }
 
     public function create(): void
     {
-        $this->view('produtos/form.php');
+        $this->render('produtos/form.php');
     }
 
     public function store(): void

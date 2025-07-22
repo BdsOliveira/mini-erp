@@ -8,7 +8,7 @@ class CuponsController extends BaseController
 {
     public function index()
     {
-        return $this->view('cupons/index.php');
+        return $this->render('cupons/index.php');
     }
 
     public function create()
