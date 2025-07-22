@@ -3,6 +3,9 @@
     "description": "Mini ERP para controle de Pedidos, Produtos, Cupons e Estoque",
     "type": "project",
     "license": "MIT",
+    "scripts": {
+        "server": "php -S localhost:8000 -t public"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
