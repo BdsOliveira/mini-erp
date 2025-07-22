@@ -4,20 +4,38 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ProductsRepository;
+use Framework\Http\Request;
+
 class ProdutosController extends BaseController
 {
-    public function index()
+    private $productsRepository;
+
+    public function __construct()
     {
-        return $this->view('produtos/index.php');
+        parent::__construct();
+        $this->productsRepository = new ProductsRepository();
     }
-    
-    public function create()
+    public function index(): void
     {
-        return $this->view('products/form.php');
+        $products = $this->productsRepository->getAll();
+        $this->view('produtos/index.php', ['products' => $products]);
     }
 
-    public function store()
+    public function create(): void
     {
-        var_dump("Storing a new product.");
+        $this->view('produtos/form.php');
+    }
+
+    public function store(): void
+    {
+        $nome = Request::get('nome');
+        $preco = (float) Request::get('preco');
+        $descricao = Request::get('descricao');
+        $imagem = Request::image('imagem');
+
+        $this->productsRepository->save(name: $nome, price: $preco, description: $descricao, image: $imagem);
+
+        $this->redirect('/produtos');
     }
 }
