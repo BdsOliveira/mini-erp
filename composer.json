@@ -4,7 +4,10 @@
     "type": "project",
     "license": "MIT",
     "scripts": {
-        "server": "php -S localhost:8000 -t public"
+        "server": [
+            "Composer\\Config::disableProcessTimeout",
+            "php -S localhost:8000 -t public"
+        ]
     },
     "autoload": {
         "psr-4": {
