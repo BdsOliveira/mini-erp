@@ -45,6 +45,8 @@ class Request
             return '';
         }
 
-        return "data:{$_FILES[$key]['type']};base64,{base64_encode(file_get_contents($_FILES[$key]['tmp_name']))}";
+        $encodedImage = base64_encode(file_get_contents($_FILES[$key]['tmp_name']));
+
+        return "data:{$_FILES[$key]['type']};base64,{$encodedImage}";
     }
 }
