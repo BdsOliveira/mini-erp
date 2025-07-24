@@ -38,4 +38,33 @@ class ProdutosController extends BaseController
 
         $this->redirect('/produtos');
     }
+
+    public function variants(): void
+    {
+        $productId = (int) Request::get('produto_id');
+
+        $product = $this->productsRepository->getById(id: $productId);
+        if (!$product) {
+            $this->redirect('/not-found');
+            return;
+        }
+
+        $variants = $this->productsRepository->getVariants(productId: $product['id']);
+
+        $this->render('produtos/variants.php', [
+            'product' => $product,
+            'variants' => $variants,
+        ]);
+    }
+
+    public function storeVariants(): void
+    {
+        $this->productsRepository->saveVariants(
+            productId: (int) Request::get('produto_id'),
+            type: Request::get('tipo'),
+            values: Request::get('valor')
+        );
+
+        $this->redirect('/produtos/variacoes?produto_id=' . Request::get('produto_id'));
+    }
 }

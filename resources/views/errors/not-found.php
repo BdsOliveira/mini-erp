@@ -11,7 +11,7 @@
             <p class="mb-0">O recurso que você está procurando não foi encontrado!</p>
         </div>
         <div class="block mt-4">
-            <a href="/" class="btn btn-primary">Ir para início</a>
+            <a href="/admin" class="btn btn-primary">Ir para início</a>
         </div>
     </div>
 </div>

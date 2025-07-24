@@ -13,9 +13,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Preço</th>
+            <th width="15%">ID</th>
+            <th width="35%">Nome</th>
+            <th width="25%">Preço</th>
+            <th width="25%">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +25,13 @@
             <td>{{ product.id }}</td>
             <td>{{ product.nome }}</td>
             <td>{{ product.preco }}</td>
+            <td>
+                <a href="/produtos/variacoes?produto_id={{ product.id }}" class="btn btn-warning">
+                    Adicionar variações
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
-    {% endblock %}
+</table>
+{% endblock %}
