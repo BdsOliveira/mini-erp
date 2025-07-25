@@ -10,7 +10,7 @@ abstract class BaseController
 {
     use HasTemplate;
 
-    public function redirect($url)
+    public function redirect(string $url): void
     {
         header("Location: $url");
         exit;
