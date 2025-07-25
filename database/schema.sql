@@ -24,11 +24,14 @@ CREATE TABLE IF NOT EXISTS produtos (
 CREATE TABLE IF NOT EXISTS estoque (
     id INT AUTO_INCREMENT PRIMARY KEY,
     produto_id INT NOT NULL,
+    variacao_id INT NOT NULL UNIQUE,
     quantidade INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (variacao_id) REFERENCES variacoes(id) ON DELETE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE,
-    INDEX idx_produto_id (produto_id)
+    INDEX idx_produto_id (produto_id),
+    INDEX idx_variacao_id (variacao_id)
 );
 
 CREATE TABLE IF NOT EXISTS cupons (

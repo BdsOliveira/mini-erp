@@ -3,7 +3,10 @@
 {% block title %}Variações do produto{% endblock %}
 
 {% block content %}
-<h2>Adicione variações para o produto</h2>
+<div class="my-3 d-flex justify-content-between align-items-center">
+    <h2>Adicione variações para o produto</h2>
+    <a href="/produtos" class="btn btn-primary">Voltar</a>
+</div>
 
 <div class="bg-light mb-3 p-3 rounded border">
     <div class="row">
@@ -42,12 +45,23 @@
     </div>
 </form>
 
-<h2 class="mt-5">Variações do produto</h2>
+<h2 class="mt-5">Veja as variações do produto</h2>
 {% for variant in variants %}
 <div class="row bg-light my-2 pt-3 rounded border">
-    <div class="col-md-8">
+    <div class="col-md-5">
         <p>ID: {{ variant.id }} - {{ variant.tipo }}: {{ variant.valor }}</p>
         <p>SKU: {{ variant.sku }}</p>
+    </div>
+    <div class="col-md-3">
+        <p>Quantidade em estoque:</p>
+        {% if variant.quantidade == 0 %} <p class="fw-bold text-danger">Sem estoque disponível</p> {% endif %}
+        {% if variant.quantidade > 0 %} <p class="fw-bold">{{ variant.quantidade }} unidade(s)</p> {% endif %}
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="/produtos/variacoes/editar?produto_id={{ product.id }}&variant_id={{ variant.id }}"
+            class="btn btn-secondary">
+            Editar
+        </a>
     </div>
 </div>
 {% endfor %}

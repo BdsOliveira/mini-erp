@@ -18,7 +18,7 @@ class ProdutosController extends BaseController
     }
     public function index(): void
     {
-        $products = $this->productsRepository->getAll();
+        $products = $this->productsRepository->getPaginated();
         $this->render('produtos/index.php', ['products' => $products]);
     }
 
@@ -66,5 +66,61 @@ class ProdutosController extends BaseController
         );
 
         $this->redirect('/produtos/variacoes?produto_id=' . Request::get('produto_id'));
+    }
+
+    public function getProductVariant(): void
+    {
+        $productId = (int) Request::get('produto_id');
+        $variantId = (int) Request::get('variant_id');
+
+        $product = $this->productsRepository->getById(id: $productId);
+        if (!$product) {
+            $this->redirect('/not-found');
+            return;
+        }
+
+        $variant = $this->productsRepository->getVariantById(productId: $productId, variantId: $variantId);
+        if (!$variant) {
+            $this->redirect('/not-found');
+            return;
+        }
+
+        $this->render('produtos/edit-variant.php', [
+            'product' => $product,
+            'variant' => $variant,
+            'estoque' => $this->productsRepository->getVariantStockQtd(variantId: $variantId),
+        ]);
+    }
+
+    public function updateVariant()
+    {
+        $productId = (int) Request::get('produto_id');
+        $variantId = (int) Request::get('variant_id');
+        $tipo = (string) Request::get('tipo');
+        $valor = (string) Request::get('valor');
+        $estoque = (int) Request::get('estoque');
+
+        $product = $this->productsRepository->getById(id: $productId);
+        if (!$product) {
+            $this->redirect('/not-found');
+            return;
+        }
+
+        $variant = $this->productsRepository->getVariantById(productId: $productId, variantId: $variantId);
+        if (!$variant) {
+            $this->redirect('/not-found');
+            return;
+        }
+
+        $variantId = $this->productsRepository->updateVariant(
+            productId: $productId,
+            variantId: $variantId,
+            type: $tipo,
+            value: $valor
+        );
+
+        $this->productsRepository->updateVariantStock(productId: $productId, variantId: $variantId, stock: $estoque);
+
+        $this->redirect("/produtos/variacoes?produto_id=$productId");
     }
 }

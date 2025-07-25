@@ -3,7 +3,10 @@
 {% block title %}Criar Produto{% endblock %}
 
 {% block content %}
-<h1>Criar Produto</h1>
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Criar Produto</h1>
+    <a href="/produtos" class="btn btn-primary">Voltar</a>
+</div>
 
 <form method="post" action="/produtos" enctype="multipart/form-data">
     <div class="row">

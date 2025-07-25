@@ -20,13 +20,14 @@ $get_admin_routes = [
     "/produtos" => [ProdutosController::class, "index"],
     "/produtos/criar" => [ProdutosController::class, "create"],
     "/produtos/variacoes" => [ProdutosController::class, "variants"],
-    
+    "/produtos/variacoes/editar" => [ProdutosController::class, "getProductVariant"],
+
     "/cupons" => [CuponsController::class, "index"],
     "/cupons/criar" => [CuponsController::class, "create"],
-    
+
     "/estoque" => [EstoqueController::class, "index"],
     "/estoque/criar" => [EstoqueController::class, "create"],
-    
+
     "/not-found" => [ErroController::class, "notFound"],
 ];
 
@@ -37,9 +38,10 @@ return [
     ],
     "POST" => [
         "/pedidos" => [PedidosController::class, "store"],
-        
+
         "/produtos" => [ProdutosController::class, "store"],
         "/produtos/variacoes/cadastrar" => [ProdutosController::class, "storeVariants"],
+        "/produtos/variacoes/update" => [ProdutosController::class, "updateVariant"],
 
         "/cupons" => [CuponsController::class, "store"],
 

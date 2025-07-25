@@ -4,23 +4,24 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
-use App\Repositories\Products\GetAll;
+use App\Repositories\Products\GetPaginated;
 use App\Repositories\Products\GetById;
 use App\Repositories\Products\Save;
 use App\Repositories\Products\SaveVariants;
 
-class ProductsRepository
+class ProductsRepository extends BaseRepository
 {
     private VariantsRepository $variantsRepository;
 
     public function __construct()
     {
+        parent::__construct();
         $this->variantsRepository = new VariantsRepository();
     }
 
-    public function getAll(int $limit = 15, int $page = 1): array
+    public function getPaginated(int $limit = 15, int $page = 1): array
     {
-        return (new GetAll())->execute($limit, $page);
+        return (new GetPaginated())->execute($limit, $page);
     }
 
     public function save(string $name, float $price, string $description, ?string $image): int|bool
@@ -48,8 +49,18 @@ class ProductsRepository
         return (new SaveVariants())->execute($productId, $type, $values);
     }
 
-    public function updateVariant(int $productId, int $variantId, string $type, string $value): void
+    public function updateVariant(int $productId, int $variantId, string $type, string $value): int|bool
     {
-        $this->variantsRepository->update(id: $variantId, productId: $productId, type: $type, value: $value);
+        return $this->variantsRepository->update(id: $variantId, productId: $productId, type: $type, value: $value);
+    }
+
+    public function getVariantStockQtd(int $variantId): int|bool
+    {
+        return $this->variantsRepository->getStockQtd(variantId: $variantId);
+    }
+
+    public function updateVariantStock(int $productId, int $variantId, int $stock): int|bool
+    {
+        return $this->variantsRepository->updateStock(variantId: $variantId, productId: $productId, stock: $stock);
     }
 }
