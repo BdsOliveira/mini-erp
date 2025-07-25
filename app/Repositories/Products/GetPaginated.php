@@ -7,7 +7,7 @@ namespace App\Repositories\Products;
 use Framework\Database\Connection;
 use PDO;
 
-class GetAll
+class GetPaginated
 {
     private PDO $connection;
 
