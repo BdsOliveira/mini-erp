@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Repositories\Variants\GetById;
+use App\Repositories\Variants\GetProductVariants;
+use App\Repositories\Variants\Save;
+use App\Repositories\Variants\Update;
 use Exception;
 use PDO;
 use PDOException;
@@ -12,53 +16,22 @@ class VariantsRepository extends BaseRepository
 {
     public function getVariantsByProductId(int $productId): array
     {
-        $query = 'SELECT variacoes.*, estoque.quantidade FROM variacoes
-            LEFT JOIN estoque ON variacoes.id = estoque.variacao_id
-            WHERE variacoes.produto_id = :produto_id ORDER BY tipo ASC';
-        $statement = $this->connection->prepare($query);
-        $statement->bindValue('produto_id', $productId);
-        $statement->execute();
-        return $statement->fetchAll();
+        return (new GetProductVariants())->execute($productId);
     }
 
     public function getById(int $productId, int $id): array
     {
-        $query = 'SELECT * FROM variacoes WHERE produto_id = :produto_id AND id = :id LIMIT 1';
-        $statement = $this->connection->prepare($query);
-        $statement->bindValue('produto_id', $productId);
-        $statement->bindValue('id', $id);
-        $statement->execute();
-        return $statement->fetch();
+        return (new GetById())->execute($productId, $id);
     }
 
     public function save(int $productId, string $type, string $value): int|bool
     {
-        $sanitizedValue = str_replace(search: ' ', replace: '-', subject: $value);
-
-        $sku = $productId . '-' . strtolower($type) . '-' . strtolower($sanitizedValue) . '-' . ($this->getLastInsertId(table: "variacoes") + 1);
-
-        $query = 'INSERT INTO variacoes (produto_id, tipo, valor, sku) VALUES (:produto_id, :tipo, :valor, :sku)';
-        $statement = $this->connection->prepare($query);
-        $statement->bindValue('produto_id', $productId);
-        $statement->bindValue('tipo', $type);
-        $statement->bindValue('valor', $value);
-        $statement->bindValue('sku', $sku);
-        $statement->execute();
-
-        return $this->getLastInsertId(table: "variacoes");
+        return (new Save())->execute($productId, $type, $value);
     }
 
     public function update(int $id, int $productId, string $type, string $value): int|bool
     {
-        $query = 'UPDATE variacoes SET tipo = :tipo, valor = :valor WHERE produto_id = :produto_id AND id = :id';
-        $statement = $this->connection->prepare($query);
-        $statement->bindValue('id', $id);
-        $statement->bindValue('produto_id', $productId);
-        $statement->bindValue('tipo', $type);
-        $statement->bindValue('valor', $value);
-        $statement->execute();
-
-        return $id;
+        return (new Update())->execute($id, $productId, $type, $value);
     }
 
     public function getStockQtd(int $variantId): int|bool
