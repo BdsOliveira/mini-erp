@@ -4,18 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories\Products;
 
-use Framework\Database\Connection;
-use PDO;
+use App\Repositories\BaseRepository;
 
-class GetPaginated
+class GetPaginated extends BaseRepository
 {
-    private PDO $connection;
-
-    public function __construct()
-    {
-        $this->connection = Connection::getInstance();
-    }
-
     public function execute(int $limit = 15, int $page = 1): array
     {
         $query = 'SELECT

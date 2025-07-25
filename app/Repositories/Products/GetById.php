@@ -4,18 +4,10 @@ declare(strict_types=1);
 
 namespace App\Repositories\Products;
 
-use Framework\Database\Connection;
-use PDO;
+use App\Repositories\BaseRepository;
 
-class GetById
+class GetById extends BaseRepository
 {
-    private PDO $connection;
-
-    public function __construct()
-    {
-        $this->connection = Connection::getInstance();
-    }
-
     public function execute(int $id): array|bool
     {
         $query = 'SELECT * FROM produtos WHERE id = :id LIMIT 1';

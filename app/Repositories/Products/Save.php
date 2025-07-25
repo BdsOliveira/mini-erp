@@ -4,20 +4,12 @@ declare(strict_types=1);
 
 namespace App\Repositories\Products;
 
+use App\Repositories\BaseRepository;
 use Exception;
-use Framework\Database\Connection;
-use PDO;
 use PDOException;
 
-class Save
+class Save extends BaseRepository
 {
-    private PDO $connection;
-
-    public function __construct()
-    {
-        $this->connection = Connection::getInstance();
-    }
-
     public function execute(string $name, float $price, string $description, ?string $image): int|bool
     {
         try {
