@@ -10,7 +10,7 @@
 
 {{ product }}
 
-<form method="post" action="{{ product.id ? '/produtos/update' : 'produtos' }}" enctype="multipart/form-data">
+<form method="post" action="{{ product.id ? '/produtos/update' : '/produtos' }}" enctype="multipart/form-data">
     <div class="row">
         <div class="mb-3 col-xs-12 col-md-6">
             <label for="nome" class="form-label">Nome do Produto</label>
