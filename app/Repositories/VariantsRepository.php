@@ -8,12 +8,16 @@ use App\Repositories\Variants\GetById;
 use App\Repositories\Variants\GetProductVariants;
 use App\Repositories\Variants\Save;
 use App\Repositories\Variants\Update;
-use Exception;
-use PDO;
-use PDOException;
 
 class VariantsRepository extends BaseRepository
 {
+    private StockRepository $stockRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->stockRepository = new StockRepository();
+    }
     public function getVariantsByProductId(int $productId): array
     {
         return (new GetProductVariants())->execute($productId);
@@ -36,29 +40,11 @@ class VariantsRepository extends BaseRepository
 
     public function getStockQtd(int $variantId): int|bool
     {
-        $query = 'SELECT quantidade FROM estoque WHERE variacao_id = :variacao_id LIMIT 1';
-        $statement = $this->connection->prepare($query);
-        $statement->bindValue('variacao_id', $variantId);
-        $statement->execute();
-        return $statement->fetchColumn();
+        return $this->stockRepository->getQtd($variantId);
     }
 
     public function updateStock(int $variantId, int $productId, int $stock): int|bool
     {
-        try {
-            $query = 'INSERT INTO estoque (produto_id, variacao_id, quantidade)
-                VALUES (:produto_id, :variacao_id, :quantidade)
-                ON DUPLICATE KEY UPDATE quantidade = VALUES(quantidade)';
-
-            $statement = $this->connection->prepare($query);
-            $statement->bindValue(':produto_id', $productId, PDO::PARAM_INT);
-            $statement->bindValue(':variacao_id', $variantId, PDO::PARAM_INT);
-            $statement->bindValue(':quantidade', $stock, PDO::PARAM_INT);
-            $statement->execute();
-
-            return $this->getLastInsertId(table: "estoque");
-        } catch (PDOException $e) {
-            throw new Exception("Erro ao atualizar estoque: " . $e->getMessage());
-        }
+        return $this->stockRepository->update($variantId, $productId, $stock);
     }
 }
