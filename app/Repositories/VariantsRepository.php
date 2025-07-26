@@ -9,13 +9,12 @@ use App\Repositories\Variants\GetProductVariants;
 use App\Repositories\Variants\Save;
 use App\Repositories\Variants\Update;
 
-class VariantsRepository extends BaseRepository
+class VariantsRepository
 {
     private StockRepository $stockRepository;
 
     public function __construct()
     {
-        parent::__construct();
         $this->stockRepository = new StockRepository();
     }
     public function getVariantsByProductId(int $productId): array

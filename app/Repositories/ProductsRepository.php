@@ -11,13 +11,12 @@ use App\Repositories\Products\SaveVariants;
 use App\Repositories\Products\Update;
 use App\Repositories\Products\UpdateImage;
 
-class ProductsRepository extends BaseRepository
+class ProductsRepository
 {
     private VariantsRepository $variantsRepository;
 
     public function __construct()
     {
-        parent::__construct();
         $this->variantsRepository = new VariantsRepository();
     }
 
