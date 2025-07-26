@@ -66,7 +66,6 @@ class ProdutosController extends BaseController
         $product = $this->productsRepository->getById(id: $productId);
         if (!$product) {
             $this->redirect('/not-found');
-            return;
         }
 
         $variants = $this->productsRepository->getVariants(productId: $product['id']);
@@ -96,13 +95,11 @@ class ProdutosController extends BaseController
         $product = $this->productsRepository->getById(id: $productId);
         if (!$product) {
             $this->redirect('/not-found');
-            return;
         }
 
         $variant = $this->productsRepository->getVariantById(productId: $productId, variantId: $variantId);
         if (!$variant) {
             $this->redirect('/not-found');
-            return;
         }
 
         $this->render('produtos/edit-variant.php', [
@@ -123,13 +120,11 @@ class ProdutosController extends BaseController
         $product = $this->productsRepository->getById(id: $productId);
         if (!$product) {
             $this->redirect('/not-found');
-            return;
         }
 
         $variant = $this->productsRepository->getVariantById(productId: $productId, variantId: $variantId);
         if (!$variant) {
             $this->redirect('/not-found');
-            return;
         }
 
         $variantId = $this->productsRepository->updateVariant(
