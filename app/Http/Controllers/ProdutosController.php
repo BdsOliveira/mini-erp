@@ -27,6 +27,26 @@ class ProdutosController extends BaseController
         $this->render('produtos/form.php');
     }
 
+    public function edit(): void
+    {
+        $this->render('produtos/form.php', [
+            'product' => $this->productsRepository->getById(id: (int) Request::get('produto_id')),
+        ]);
+    }
+
+    public function update(): void
+    {
+        $this->productsRepository->update(
+            productId: (int) Request::get('id'),
+            nome: Request::get('nome'),
+            preco: (float) Request::get('preco'),
+            descricao: Request::get('descricao'),
+            image: Request::image('imagem')
+        );
+        
+        $this->redirect('/produtos');
+    }
+
     public function store(): void
     {
         $nome = Request::get('nome');

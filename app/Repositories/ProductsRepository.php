@@ -8,6 +8,8 @@ use App\Repositories\Products\GetPaginated;
 use App\Repositories\Products\GetById;
 use App\Repositories\Products\Save;
 use App\Repositories\Products\SaveVariants;
+use App\Repositories\Products\Update;
+use App\Repositories\Products\UpdateImage;
 
 class ProductsRepository extends BaseRepository
 {
@@ -32,6 +34,19 @@ class ProductsRepository extends BaseRepository
     public function getById(int $id): array|bool
     {
         return (new GetById())->execute($id);
+    }
+
+    public function update(int $productId, string $nome, float $preco, string $descricao, ?string $image = ''): int|bool
+    {
+        if (strlen($image) > 0) {
+            $this->updateImage(productId: $productId, image: $image);
+        }
+        return (new Update())->execute(productId: $productId, nome: $nome, preco: $preco, descricao: $descricao);
+    }
+
+    public function updateImage(int $productId, string $image): int|bool
+    {
+        return (new UpdateImage())->execute(productId: $productId, image: $image);
     }
 
     public function getVariants(int $productId): array

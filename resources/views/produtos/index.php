@@ -29,6 +29,9 @@
                 <a href="/produtos/variacoes?produto_id={{ product.id }}" class="btn btn-warning">
                     Adicionar variações
                 </a>
+                <a href="/produtos/editar?produto_id={{ product.id }}" class="btn btn-success">
+                    Editar
+                </a>
             </td>
         </tr>
         {% endfor %}
