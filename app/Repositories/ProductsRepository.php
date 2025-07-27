@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Models\Product;
 use App\Repositories\Products\GetPaginated;
 use App\Repositories\Products\GetById;
 use App\Repositories\Products\Save;
@@ -25,22 +26,22 @@ class ProductsRepository
         return (new GetPaginated())->execute($limit, $page);
     }
 
-    public function save(string $name, float $price, string $description, ?string $image): int|bool
+    public function save(Product $product): int|bool
     {
-        return (new Save())->execute($name, $price, $description, $image);
+        return (new Save())->execute(product: $product);
     }
 
-    public function getById(int $id): array|bool
+    public function getById(int $id): Product|bool
     {
         return (new GetById())->execute($id);
     }
 
-    public function update(int $productId, string $nome, float $preco, string $descricao, ?string $image = ''): int|bool
+    public function update(int $productId, Product $product): int|bool
     {
-        if (strlen($image) > 0) {
-            $this->updateImage(productId: $productId, image: $image);
+        if (strlen($product->imagem) > 0) {
+            $this->updateImage(productId: $productId, image: $product->imagem);
         }
-        return (new Update())->execute(productId: $productId, nome: $nome, preco: $preco, descricao: $descricao);
+        return (new Update())->execute(productId: $productId, product: $product);
     }
 
     public function updateImage(int $productId, string $image): int|bool
@@ -68,12 +69,12 @@ class ProductsRepository
         return $this->variantsRepository->update(id: $variantId, productId: $productId, type: $type, value: $value);
     }
 
-    public function getVariantStockQtd(int $variantId): int|bool
+    public function getVariantStockQtd(int $variantId): int|bool//return stock
     {
         return $this->variantsRepository->getStockQtd(variantId: $variantId);
     }
 
-    public function updateVariantStock(int $productId, int $variantId, int $stock): int|bool
+    public function updateVariantStock(int $productId, int $variantId, int $stock): int|bool // return in
     {
         return $this->variantsRepository->updateStock(variantId: $variantId, productId: $productId, stock: $stock);
     }

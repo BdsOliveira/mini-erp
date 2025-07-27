@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductDTO;
 use App\Repositories\ProductsRepository;
 use Framework\Http\Request;
 
@@ -29,32 +30,26 @@ class ProdutosController extends BaseController
 
     public function edit(): void
     {
+        $product = $this->productsRepository->getById(id: (int) Request::get('produto_id'));
         $this->render('produtos/form.php', [
-            'product' => $this->productsRepository->getById(id: (int) Request::get('produto_id')),
+            'product' => $product->toArray(),
         ]);
     }
 
     public function update(): void
     {
-        $this->productsRepository->update(
-            productId: (int) Request::get('id'),
-            nome: Request::get('nome'),
-            preco: (float) Request::get('preco'),
-            descricao: Request::get('descricao'),
-            image: Request::image('imagem')
-        );
+        $product = (new ProductDTO([...Request::all(), 'imagem' => Request::image('imagem')]))->fromArray();
+
+        $this->productsRepository->update(productId: (int) Request::get('id'), product: $product);
         
         $this->redirect('/produtos');
     }
 
     public function store(): void
     {
-        $nome = Request::get('nome');
-        $preco = (float) Request::get('preco');
-        $descricao = Request::get('descricao');
-        $imagem = Request::image('imagem');
+        $product = new ProductDTO([...Request::all(), 'imagem' => Request::image('imagem')]);
 
-        $this->productsRepository->save(name: $nome, price: $preco, description: $descricao, image: $imagem);
+        $this->productsRepository->save(product: $product->fromArray());
 
         $this->redirect('/produtos');
     }
@@ -68,7 +63,7 @@ class ProdutosController extends BaseController
             $this->redirect('/not-found');
         }
 
-        $variants = $this->productsRepository->getVariants(productId: $product['id']);
+        $variants = $this->productsRepository->getVariants(productId: $product->id);
 
         $this->render('produtos/variants.php', [
             'product' => $product,

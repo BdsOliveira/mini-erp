@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Products;
 
+use App\Models\ProductDTO;
 use App\Repositories\BaseRepository;
 
 class GetPaginated extends BaseRepository
@@ -21,7 +22,7 @@ class GetPaginated extends BaseRepository
         $statement = $this->connection->prepare($query);
         $statement->execute();
         while ($row = $statement->fetch()) {
-            $products[] = $row;
+            $products[] = (new ProductDTO($row))->toArray();
         }
         return $products;
     }

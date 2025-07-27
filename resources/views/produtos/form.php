@@ -8,8 +8,6 @@
     <a href="/produtos" class="btn btn-primary">Voltar</a>
 </div>
 
-{{ product }}
-
 <form method="post" action="{{ product.id ? '/produtos/update' : '/produtos' }}" enctype="multipart/form-data">
     <div class="row">
         <div class="mb-3 col-xs-12 col-md-6">
