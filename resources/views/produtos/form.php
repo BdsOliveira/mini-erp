@@ -30,7 +30,11 @@
         {% if (product.id) %}
         <input type="hidden" name="id" id="id" value="{{ product.id }}">
         <div class="mb-3 col-md-2">
+            {% if (product.imagem) %}
             <img src="{{ product.imagem }}" alt="{{product.nome}}" class="mb-3 rounded w-75 img-fluid">
+            {% else %}
+             Produto sem imagem cadastrada
+            {% endif %}
         </div>
         <div class="mb-3 col-md-10">
             <label for="imagem" class="form-label">Substituir imagem do produto</label>
