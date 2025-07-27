@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Models\Variant;
 use App\Repositories\Variants\GetById;
 use App\Repositories\Variants\GetProductVariants;
 use App\Repositories\Variants\Save;
@@ -22,7 +23,7 @@ class VariantsRepository
         return (new GetProductVariants())->execute($productId);
     }
 
-    public function getById(int $productId, int $id): array
+    public function getById(int $productId, int $id): Variant
     {
         return (new GetById())->execute($productId, $id);
     }

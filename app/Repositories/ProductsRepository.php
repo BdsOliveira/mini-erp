@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Models\Variant;
 use App\Repositories\Products\GetPaginated;
 use App\Repositories\Products\GetById;
 use App\Repositories\Products\Save;
@@ -54,7 +55,7 @@ class ProductsRepository
         return $this->variantsRepository->getVariantsByProductId($productId);
     }
 
-    public function getVariantById(int $productId, int $variantId): array
+    public function getVariantById(int $productId, int $variantId): Variant
     {
         return $this->variantsRepository->getById($productId, $variantId);
     }
