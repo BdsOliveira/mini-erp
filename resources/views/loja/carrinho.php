@@ -77,6 +77,15 @@
                     <span class="text-success">Grátis</span>
                     {% endif %}
                 </div>
+                
+                <div class="d-flex justify-content-between mb-2">
+                    <span>Cupom aplicado:</span>
+                    {% if cupom_valor != 0 %}
+                    <span>R$ {{ "%.2f"|format(cupom_valor) }}</span>
+                    {% else %}
+                    <span class="">0.00</span>
+                    {% endif %}
+                </div>
 
                 <hr>
 
@@ -89,7 +98,8 @@
                 <div class="mb-3">
                     <form action="/carrinho/cupom" method="post">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" name="cupom" placeholder="Cupom de desconto">
+                            <input type="text" class="form-control text-uppercase" id="cupom" name="cupom"
+                                value="{{ cupom }}" placeholder="Cupom de desconto">
                             <button type="submit" class="btn btn-outline-secondary">
                                 Aplicar
                             </button>

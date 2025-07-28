@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CarrinhoController;
-use App\Http\Controllers\CuponsController;
 use App\Http\Controllers\ErroController;
 use App\Http\Controllers\LojaController;
 use App\Http\Controllers\HomeController;
@@ -26,9 +25,6 @@ $get_admin_routes = [
     "/produtos/variacoes" => [ProdutosController::class, "variants"],
     "/produtos/variacoes/editar" => [ProdutosController::class, "getProductVariant"],
 
-    "/cupons" => [CuponsController::class, "index"],
-    "/cupons/criar" => [CuponsController::class, "create"],
-
     "/not-found" => [ErroController::class, "notFound"],
 ];
 
@@ -39,12 +35,11 @@ $post_admin_routes = [
     "/produtos/update" => [ProdutosController::class, "update"],
     "/produtos/variacoes/cadastrar" => [ProdutosController::class, "storeVariants"],
     "/produtos/variacoes/update" => [ProdutosController::class, "updateVariant"],
-
-    "/cupons" => [CuponsController::class, "store"],
 ];
 
 $post_store_routes = [
     "/carrinho" => [CarrinhoController::class, "addToCart"],
+    "/carrinho/cupom" => [CarrinhoController::class, "validateCupom"],
 ];
 
 return [

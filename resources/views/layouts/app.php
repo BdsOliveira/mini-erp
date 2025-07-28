@@ -19,8 +19,6 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/produtos" class="nav-link">Produtos</a></li>
                 <li class="nav-item"><a href="/pedidos" class="nav-link">Pedidos</a></li>
-                <li class="nav-item"><a href="/cupons" class="nav-link">Cupons</a></li>
-                <li class="nav-item"><a href="/estoque" class="nav-link">Estoque</a></li>
                 <li class="nav-item"><a href="/" class="btn btn-primary">Visitar Loja</a></li>
             </ul>
         </header>
