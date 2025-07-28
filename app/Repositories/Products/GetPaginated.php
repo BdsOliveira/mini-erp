@@ -14,6 +14,8 @@ class GetPaginated extends BaseRepository
         $query = 'SELECT
             produtos.id,
             produtos.nome,
+            produtos.imagem,
+            produtos.descricao,
             produtos.preco
         FROM produtos'
             . ($limit ? " LIMIT $limit OFFSET " . (($page - 1) * $limit) : '');

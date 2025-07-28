@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\CuponsController;
 use App\Http\Controllers\ErroController;
-use App\Http\Controllers\EstoqueController;
+use App\Http\Controllers\LojaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProdutosController;
 
 $get_store_routes = [
-
+    '' => [LojaController::class, "index"],
 ];
 
 $get_admin_routes = [
@@ -26,27 +27,31 @@ $get_admin_routes = [
     "/cupons" => [CuponsController::class, "index"],
     "/cupons/criar" => [CuponsController::class, "create"],
 
-    "/estoque" => [EstoqueController::class, "index"],
-    "/estoque/criar" => [EstoqueController::class, "create"],
-
     "/not-found" => [ErroController::class, "notFound"],
+];
+
+$post_admin_routes = [
+    "/pedidos" => [PedidosController::class, "store"],
+
+    "/produtos" => [ProdutosController::class, "store"],
+    "/produtos/update" => [ProdutosController::class, "update"],
+    "/produtos/variacoes/cadastrar" => [ProdutosController::class, "storeVariants"],
+    "/produtos/variacoes/update" => [ProdutosController::class, "updateVariant"],
+
+    "/cupons" => [CuponsController::class, "store"],
+];
+
+$post_store_routes = [
+    "/carrinho" => [CarrinhoController::class, "addToCart"],
 ];
 
 return [
     "GET" => [
         ...$get_admin_routes,
-        ...$get_store_routes
+        ...$get_store_routes,
     ],
     "POST" => [
-        "/pedidos" => [PedidosController::class, "store"],
-
-        "/produtos" => [ProdutosController::class, "store"],
-        "/produtos/update" => [ProdutosController::class, "update"],
-        "/produtos/variacoes/cadastrar" => [ProdutosController::class, "storeVariants"],
-        "/produtos/variacoes/update" => [ProdutosController::class, "updateVariant"],
-
-        "/cupons" => [CuponsController::class, "store"],
-
-        "/estoque" => [EstoqueController::class, "store"],
+        ...$post_admin_routes,
+        ...$post_store_routes,
     ],
 ];
