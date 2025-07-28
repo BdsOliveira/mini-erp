@@ -15,11 +15,13 @@ use App\Repositories\Products\UpdateImage;
 
 class ProductsRepository
 {
+    private CartsRepository $cartsRepository;
     private VariantsRepository $variantsRepository;
 
     public function __construct()
     {
         $this->variantsRepository = new VariantsRepository();
+        $this->cartsRepository = new CartsRepository();
     }
 
     public function getPaginated(int $limit = 15, int $page = 1): array
@@ -78,5 +80,10 @@ class ProductsRepository
     public function updateVariantStock(int $productId, int $variantId, int $stock): int|bool // return in
     {
         return $this->variantsRepository->updateStock(variantId: $variantId, productId: $productId, stock: $stock);
+    }
+
+    public function getCartProducts(array $ids = []): array
+    {
+        return $this->cartsRepository->getProducts(ids: $ids);
     }
 }

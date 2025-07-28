@@ -10,6 +10,8 @@ use App\Http\Controllers\ProdutosController;
 
 $get_store_routes = [
     '' => [LojaController::class, "index"],
+    
+    "/carrinho" => [CarrinhoController::class, "index"],
 ];
 
 $get_admin_routes = [

@@ -11,9 +11,11 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body py-3" data-bs-theme="dark">
         <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand" href="/">Super Lojão</a>
+            <div class="w-100">
+                <a class="navbar-brand" href="/">Super Lojão</a>
+            </div>
             <div class="text-end collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -21,7 +23,7 @@
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                  {{ getCartItemsQtd() }}
+                                {{ getCartItemsQtd() }}
                                 <span class="visually-hidden">Itens no Carrinho</span>
                             </span>
                         </a>

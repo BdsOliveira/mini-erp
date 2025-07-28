@@ -40,12 +40,16 @@ class Session
 
     public static function push(string $key, mixed $value)
     {
+        if (in_array(needle: $value, haystack: $_SESSION[$key] ?? [])) {
+            return;
+        }
+
         $_SESSION[$key][] = $value;
     }
 
     public static function count(string $key)
     {
-        return count($_SESSION[$key]);
+        return count($_SESSION[$key] ?? []);
     }
 
     public static function clear()
