@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Framework\View\Traits;
 
+use Framework\Utils\Session;
 use Twig\Environment;
 use Twig\Lexer;
 use Twig\Loader\FilesystemLoader;
@@ -40,6 +41,12 @@ trait HasTemplate
         }
         return [
             $this->twig->addFunction(new TwigFunction('dd', fn(array $data) => dd($data))),
+            $this->twig->addFunction(new TwigFunction('getCartItemsQtd', fn() => $this->getCartItemsQtd())),
         ];
+    }
+
+    public function getCartItemsQtd(): int
+    {
+        return Session::count(key: 'cart');
     }
 }
