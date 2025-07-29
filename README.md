@@ -11,6 +11,8 @@ Copie o arquivo que devem ser inseridas as variáveis de ambiente e adicione as 
 cp .env.example .env
 ```
 
+O esquema do banco de dados você pode encontrar em `database/schema.sql`, basta importar para o seu banco de dados.
+
 Instale as depedências do projeto com o composer:
 ```bash copy
 composer install
