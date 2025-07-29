@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ProductsRepository;
 use App\Services\GetCartData;
+use App\Services\NewOrder;
 use Framework\Utils\Session;
 
 class CheckoutController extends BaseController
@@ -25,5 +26,11 @@ class CheckoutController extends BaseController
 
     public function store()
     {
+        (new NewOrder())->excute(total: (float) Session::get(key: 'total'));
+        
+        Session::clear();
+        Session::flash(value: 'Pedido realizado com sucesso!');
+        
+        $this->redirect(url: '/');
     }
 }

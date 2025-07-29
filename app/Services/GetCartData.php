@@ -13,8 +13,9 @@ class GetCartData
         $frete = GetFrete::excute($subtotal);
         $cupom = Session::get(key: 'cupom');
         $cupom_valor = ((float) Session::get(key: 'desconto')) * -1;
-
+        
         $total = $subtotal + $frete + $cupom_valor;
+        Session::set(key: 'total', value: $total);
 
         return [
             'subtotal' => $subtotal,
