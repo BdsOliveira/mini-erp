@@ -9,7 +9,7 @@ use App\Http\Controllers\ProdutosController;
 
 $get_store_routes = [
     '' => [LojaController::class, "index"],
-    
+
     "/carrinho" => [CarrinhoController::class, "index"],
 ];
 
@@ -39,7 +39,8 @@ $post_admin_routes = [
 
 $post_store_routes = [
     "/carrinho" => [CarrinhoController::class, "addToCart"],
-    "/carrinho/cupom" => [CarrinhoController::class, "validateCupom"],
+    "/carrinho/validar-cupom" => [CarrinhoController::class, "validateCupom"],
+    "/carrinho/delete-item" => [CarrinhoController::class, "deleteItem"],
 ];
 
 return [

@@ -45,4 +45,10 @@ class CarrinhoController extends BaseController
 
         $this->redirect(url: '/carrinho');
     }
+
+    public function deleteItem()
+    {
+        Session::remove(key: 'cart', index: (int) Request::get('productId'));
+        $this->redirect(url: '/carrinho');
+    }
 }

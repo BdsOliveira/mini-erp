@@ -19,7 +19,7 @@ readonly class ProductDTO
         $this->descricao = $data['descricao'] ?? '';
         $this->preco = (float) $data['preco'] ?? 0;
         $this->imagem = $data['imagem'] ?? '';
-        $this->status = (int) $data['status'] ?? 1;
+        $this->status = (int) $data['status'] ?: 1;
     }
 
     public function fromArray(): Product

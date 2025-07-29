@@ -38,7 +38,7 @@
                 <div class="col-md-3 col-12 text-md-end">
                     <form action="/carrinho/delete-item" method="post"
                         onsubmit="return confirm('Deseja realmente remover este item do carrinho?')">
-                        <input type="hidden" name="id" value="{{ product.id }}">
+                        <input type="hidden" name="productId" id="productId" value="{{ product.id }}">
                         <button type="submit" class="btn btn-outline-danger btn-sm">
                             <i class="fa fa-trash"> </i> Remover
                         </button>
@@ -77,7 +77,7 @@
                     <span class="text-success">Grátis</span>
                     {% endif %}
                 </div>
-                
+
                 <div class="d-flex justify-content-between mb-2">
                     <span>Cupom aplicado:</span>
                     {% if cupom_valor != 0 %}
@@ -96,7 +96,7 @@
                 {% endif %}
 
                 <div class="mb-3">
-                    <form action="/carrinho/cupom" method="post">
+                    <form action="/carrinho/validar-cupom" method="post">
                         <div class="input-group input-group-sm">
                             <input type="text" class="form-control text-uppercase" id="cupom" name="cupom"
                                 value="{{ cupom }}" placeholder="Cupom de desconto">

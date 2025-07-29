@@ -27,7 +27,8 @@ class Session
     public static function remove(string $key, int $index = -1)
     {
         if ($index >= 0) {
-            unset($_SESSION[$key][$index]);
+            $i = array_find_key(array: $_SESSION['cart'], callback: fn ($value) => $value == $index);
+            unset($_SESSION[$key][$i]);
             return;
         }
         unset($_SESSION[$key]);
