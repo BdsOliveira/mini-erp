@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ErroController;
 use App\Http\Controllers\LojaController;
 use App\Http\Controllers\HomeController;
@@ -11,6 +12,8 @@ $get_store_routes = [
     '' => [LojaController::class, "index"],
 
     "/carrinho" => [CarrinhoController::class, "index"],
+
+    "/checkout" => [CheckoutController::class, "index"],
 ];
 
 $get_admin_routes = [
@@ -41,6 +44,8 @@ $post_store_routes = [
     "/carrinho" => [CarrinhoController::class, "addToCart"],
     "/carrinho/validar-cupom" => [CarrinhoController::class, "validateCupom"],
     "/carrinho/delete-item" => [CarrinhoController::class, "deleteItem"],
+
+    "/checkout" => [CheckoutController::class, "store"],
 ];
 
 return [
