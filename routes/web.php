@@ -38,6 +38,8 @@ $post_admin_routes = [
     "/produtos/update" => [ProdutosController::class, "update"],
     "/produtos/variacoes/cadastrar" => [ProdutosController::class, "storeVariants"],
     "/produtos/variacoes/update" => [ProdutosController::class, "updateVariant"],
+
+    "/webhook" => [CheckoutController::class, "webhook"],
 ];
 
 $post_store_routes = [

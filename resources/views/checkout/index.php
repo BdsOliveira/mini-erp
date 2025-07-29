@@ -14,7 +14,7 @@
 </div>
 
 <div class="container pb-5">
-    <form id="form" action="/checkout" method="post">
+    <form action="/checkout" method="post">
         <div class="mb-4">
             <h5 class="text-secondary mb-3">
                 <i class="fas fa-user me-2"></i>

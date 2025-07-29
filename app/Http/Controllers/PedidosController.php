@@ -10,14 +10,4 @@ class PedidosController extends BaseController
     {
         return $this->render('pedidos/index.php');
     }
-
-    public function create()
-    {
-        var_dump("Creating a new order.");
-    }
-
-    public function store()
-    {
-        var_dump("Storing a new order.");
-    }
 }
