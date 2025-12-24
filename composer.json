@@ -1,6 +1,6 @@
 {
-    "name": "bdsoliveira/montink",
-    "description": "Mini ERP para controle de Pedidos, Produtos, Cupons e Estoque",
+    "name": "bdsoliveira/setup-projeto-mvc",
+    "description": "Setup de projeto MVC em PHP dockerizado com serviços essenciais.",
     "type": "project",
     "license": "MIT",
     "scripts": {
