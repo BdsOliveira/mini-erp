@@ -7,6 +7,7 @@ use App\Modules\Store\Controllers\LojaController;
 use App\Modules\Core\Controllers\HomeController;
 use App\Modules\Checkout\Controllers\PedidosController;
 use App\Modules\Catalog\Controllers\ProdutosController;
+use App\Modules\Scheduling\Controllers\SchedulingController;
 
 $get_store_routes = [
     '' => [LojaController::class, "index"],
@@ -14,6 +15,8 @@ $get_store_routes = [
     "/carrinho" => [CarrinhoController::class, "index"],
 
     "/checkout" => [CheckoutController::class, "index"],
+
+    "/agendamento" => [SchedulingController::class, "index"],
 ];
 
 $get_admin_routes = [
