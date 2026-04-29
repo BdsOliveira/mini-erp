@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductDTO;
+use App\DTOs\ProductDTO;
 use App\Repositories\ProductsRepository;
 use Framework\Http\Request;
 

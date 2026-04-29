@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Variants;
 
 use App\Models\Variant;
-use App\Models\VariantDTO;
+use App\DTOs\VariantDTO;
 use App\Repositories\BaseRepository;
 
 class GetById extends BaseRepository

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repositories\Cart;
 
-use App\Models\ProductDTO;
+use App\DTOs\ProductDTO;
 use App\Repositories\BaseRepository;
 
 class GetProducts extends BaseRepository

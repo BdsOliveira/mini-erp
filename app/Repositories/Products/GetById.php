@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories\Products;
 
 use App\Models\Product;
-use App\Models\ProductDTO;
+use App\DTOs\ProductDTO;
 use App\Repositories\BaseRepository;
 
 class GetById extends BaseRepository
