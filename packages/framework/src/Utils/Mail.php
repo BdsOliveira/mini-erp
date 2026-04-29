@@ -1,6 +1,8 @@
 <?php
 
 namespace Framework\Utils;
+
+use PHPMailer\PHPMailer\Exception as MailerException;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class Mail
@@ -37,20 +39,22 @@ class Mail
 
     public static function send(string $to, string $subject, string $body, bool $isHtml = false): string
     {
-        self::config();
-        $mailer = self::getMailer();
+        try {
+            self::config();
+            $mailer = self::getMailer();
 
-        $mailer->addAddress($to);
+            $mailer->addAddress($to);
+            $mailer->isHTML($isHtml);
+            $mailer->Subject = $subject;
+            $mailer->Body = $body;
 
-        $mailer->isHTML($isHtml);
+            if (!$mailer->send()) {
+                return "Erro no envio do email: {$mailer->ErrorInfo}";
+            }
 
-        $mailer->Subject = $subject;
-        $mailer->Body = $body;
-
-        if (!$mailer->send()) {
-            return "Erro no envio do email: {$mailer->ErrorInfo}";
-        } else {
             return 'Email enviado com sucesso!';
+        } catch (MailerException $e) {
+            return "Erro no envio do email: {$e->getMessage()}";
         }
     }
 }
