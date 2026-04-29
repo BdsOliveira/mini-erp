@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Modules\Catalog\Repositories;
 
-use App\Modules\Catalog\Repositories\Stock\GetQtd;
-use App\Modules\Catalog\Repositories\Stock\Update;
+use App\Modules\Catalog\Repositories\Stock\GetStockQuantityRepository;
+use App\Modules\Catalog\Repositories\Stock\UpdateStockRepository;
 
 class StockRepository
 {
     public function getQtd(int $variantId): int|bool
     {
-        return (new GetQtd())->execute($variantId);
+        return (new GetStockQuantityRepository())->execute($variantId);
     }
 
     public function update(int $variantId, int $productId, int $quantity): int|bool
     {
-        return (new Update())->execute($variantId, $productId, $quantity);
+        return (new UpdateStockRepository())->execute($variantId, $productId, $quantity);
     }
 }

@@ -6,7 +6,7 @@ namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
 use App\Modules\Catalog\DTOs\ProductDTO;
-use App\Modules\Catalog\Repositories\Products\Save;
+use App\Modules\Catalog\Repositories\Products\SaveProductRepository;
 use Framework\Http\Request;
 
 class StoreProductController extends BaseController
@@ -16,7 +16,7 @@ class StoreProductController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new Save();
+        $this->repository = new SaveProductRepository();
     }
 
     public function execute(): void

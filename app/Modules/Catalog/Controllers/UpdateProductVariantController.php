@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\Products\GetByIdRepository;
+use App\Modules\Catalog\Repositories\Products\GetProductByIdRepository;
 use App\Modules\Catalog\Repositories\Variants\GetVariantByIdRepository;
 use App\Modules\Catalog\Repositories\Variants\UpdateVariantRepository;
 use App\Modules\Catalog\Repositories\Stock\UpdateStockRepository;
@@ -21,7 +21,7 @@ class UpdateProductVariantController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->productRepository = new GetByIdRepository();
+        $this->productRepository = new GetProductByIdRepository();
         $this->variantRepository = new GetVariantByIdRepository();
         $this->updateVariantRepository = new UpdateVariantRepository();
         $this->updateStockRepository = new UpdateStockRepository();

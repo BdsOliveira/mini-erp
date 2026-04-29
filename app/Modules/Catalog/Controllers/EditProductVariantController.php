@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\Products\GetByIdRepository;
+use App\Modules\Catalog\Repositories\Products\GetProductByIdRepository;
 use App\Modules\Catalog\Repositories\Variants\GetVariantByIdRepository;
-use App\Modules\Catalog\Repositories\Stock\GetQtdRepository;
+use App\Modules\Catalog\Repositories\Stock\GetStockQuantityRepository;
 use Framework\Http\Request;
 
 class EditProductVariantController extends BaseController
@@ -19,9 +19,9 @@ class EditProductVariantController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->productRepository = new GetByIdRepository();
+        $this->productRepository = new GetProductByIdRepository();
         $this->variantRepository = new GetVariantByIdRepository();
-        $this->stockRepository = new GetQtdRepository();
+        $this->stockRepository = new GetStockQuantityRepository();
     }
 
     public function execute(): void

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\Products\GetByIdRepository;
+use App\Modules\Catalog\Repositories\Products\GetProductByIdRepository;
 use App\Modules\Catalog\Repositories\Variants\GetProductVariantsRepository;
 use Framework\Http\Request;
 
@@ -17,7 +17,7 @@ class ListProductVariantsController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->productRepository = new GetByIdRepository();
+        $this->productRepository = new GetProductByIdRepository();
         $this->variantsRepository = new GetProductVariantsRepository();
     }
 

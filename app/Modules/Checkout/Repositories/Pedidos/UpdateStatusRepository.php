@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Modules\Checkout\Repositories\Pedidos;
 
 use App\Modules\Core\Base\BaseRepository;
 use Exception;
 use PDOException;
 
-class Update extends BaseRepository
+class UpdateStatusRepository extends BaseRepository
 {
     public function execute(int $pedidoId, string $status): int|bool
     {

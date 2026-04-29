@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Store\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\Products\GetPaginatedRepository;
+use App\Modules\Catalog\Repositories\Products\GetPaginatedProductsRepository;
 use Framework\Utils\Session;
 
 class ListStoreController extends BaseController
@@ -15,7 +15,7 @@ class ListStoreController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new GetPaginatedRepository();
+        $this->repository = new GetPaginatedProductsRepository();
     }
 
     public function execute(): void

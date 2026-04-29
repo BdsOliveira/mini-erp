@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\Variants\SaveVariantsRepository;
+use App\Modules\Catalog\Repositories\Products\SaveProductVariantsRepository;
 use Framework\Http\Request;
 
 class StoreProductVariantsController extends BaseController
@@ -15,7 +15,7 @@ class StoreProductVariantsController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new SaveVariantsRepository();
+        $this->repository = new SaveProductVariantsRepository();
     }
 
     public function execute(): void

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\Products\GetByIdRepository;
+use App\Modules\Catalog\Repositories\Products\GetProductByIdRepository;
 use Framework\Http\Request;
 
 class EditProductController extends BaseController
@@ -15,7 +15,7 @@ class EditProductController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new GetByIdRepository();
+        $this->repository = new GetProductByIdRepository();
     }
 
     public function execute(): void
