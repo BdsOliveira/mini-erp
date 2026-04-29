@@ -47,7 +47,15 @@ Todas as classes das camadas de Controller, Service e Repository devem seguir o 
 O código deve seguir rigorosamente a estrutura modularizada definida na arquitetura:
 `app/Modules/[Modulo]/[Camada]`
 
-## 7. Rotas e URLs (Regra 11)
+## 7. Specification-Driven Development (Regra SDD)
+
+Toda nova feature deve seguir o processo SDD descrito em [`docs/specs/sdd-process.md`](../specs/sdd-process.md).
+
+- Nenhum código de feature é escrito sem uma spec em status `Approved`.
+- O template para novas specs está em [`docs/specs/spec-template.md`](../specs/spec-template.md).
+- Specs ficam em `docs/specs/features/SPEC-{número}-{slug}.md`.
+
+## 8. Rotas e URLs (Regra 11)
 Ao contrário do código interno, as interfaces externas (URLs) devem ser amigáveis ao usuário local:
 - **Paths e Queries:** Devem ser sempre escritos em **Português**.
 - Exemplo: `/produtos/editar?id=1` (Correto) | `/products/edit?id=1` (Incorreto)
