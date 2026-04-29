@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\CarrinhoController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\ErroController;
-use App\Http\Controllers\LojaController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PedidosController;
-use App\Http\Controllers\ProdutosController;
+use App\Modules\Cart\Controllers\CarrinhoController;
+use App\Modules\Checkout\Controllers\CheckoutController;
+use App\Modules\Core\Controllers\ErroController;
+use App\Modules\Store\Controllers\LojaController;
+use App\Modules\Core\Controllers\HomeController;
+use App\Modules\Checkout\Controllers\PedidosController;
+use App\Modules\Catalog\Controllers\ProdutosController;
 
 $get_store_routes = [
     '' => [LojaController::class, "index"],
