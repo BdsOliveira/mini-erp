@@ -2,6 +2,8 @@
 
 namespace App\Modules\Catalog\DTOs;
 
+use App\Modules\Catalog\Models\Product;
+
 readonly class ProductDTO
 {
     private int $id;

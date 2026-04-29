@@ -14,7 +14,7 @@ class ListCartController extends BaseController
     public function execute(): void
     {
         $products = (new GetCartProductsRepository())->execute(ids: Session::get(key: 'cart') ?? []);
-        $cartData = GetCartData::excute(products: $products);
+        $cartData = GetCartData::execute(products: $products);
 
         $this->render('loja/carrinho.php', [
             'products' => $products,

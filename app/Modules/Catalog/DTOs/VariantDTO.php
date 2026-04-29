@@ -2,6 +2,8 @@
 
 namespace App\Modules\Catalog\DTOs;
 
+use App\Modules\Catalog\Models\Variant;
+
 readonly class VariantDTO
 {
     private int $id;

@@ -4,7 +4,7 @@ namespace App\Modules\Support\Services;
 
 class GetFrete
 {
-    public static function excute(float $subtotal): float
+    public static function execute(float $subtotal): float
     {
         if ($subtotal > 200) {
             return 0.00;

@@ -3,6 +3,7 @@
 namespace App\Modules\Cart\Services;
 
 use Framework\Utils\Session;
+use App\Modules\Support\Services\GetFrete;
 
 class GetCartData
 {
@@ -10,7 +11,7 @@ class GetCartData
     {
         $subtotal = array_sum(array_column($products, 'preco'));
         Session::set(key: 'subtotal', value: $subtotal);
-        $frete = GetFrete::excute($subtotal);
+        $frete = GetFrete::execute($subtotal);
         $cupom = Session::get(key: 'cupom');
         $cupom_valor = ((float) Session::get(key: 'desconto')) * -1;
         
