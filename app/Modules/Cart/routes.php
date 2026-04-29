@@ -1,14 +1,17 @@
 <?php
 
-use App\Modules\Cart\Controllers\CarrinhoController;
+use App\Modules\Cart\Controllers\ListCartController;
+use App\Modules\Cart\Controllers\AddToCartController;
+use App\Modules\Cart\Controllers\ValidateCupomController;
+use App\Modules\Cart\Controllers\RemoveCartItemController;
 
 return [
     "GET" => [
-        "/carrinho" => [CarrinhoController::class, "index"],
+        "/carrinho" => [ListCartController::class, "execute"],
     ],
     "POST" => [
-        "/carrinho" => [CarrinhoController::class, "addToCart"],
-        "/carrinho/validar-cupom" => [CarrinhoController::class, "validateCupom"],
-        "/carrinho/delete-item" => [CarrinhoController::class, "deleteItem"],
+        "/carrinho" => [AddToCartController::class, "execute"],
+        "/carrinho/validar-cupom" => [ValidateCupomController::class, "execute"],
+        "/carrinho/delete-item" => [RemoveCartItemController::class, "execute"],
     ]
 ];
