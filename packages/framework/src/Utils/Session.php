@@ -4,27 +4,27 @@ namespace Framework\Utils;
 
 class Session
 {
-    public static function start()
+    public static function start(): void
     {
         session_start();
     }
 
-    public static function destroy()
+    public static function destroy(): void
     {
         session_destroy();
     }
 
-    public static function set(string $key, $value)
+    public static function set(string $key, mixed $value): void
     {
         $_SESSION[$key] = $value;
     }
 
-    public static function get(string $key)
+    public static function get(string $key): mixed
     {
         return $_SESSION[$key] ?? null;
     }
 
-    public static function remove(string $key, int $index = -1)
+    public static function remove(string $key, int $index = -1): void
     {
         if ($index >= 0) {
             $i = array_find_key(array: $_SESSION['cart'], callback: fn ($value) => $value == $index);
@@ -34,12 +34,12 @@ class Session
         unset($_SESSION[$key]);
     }
 
-    public static function has(string $key)
+    public static function has(string $key): bool
     {
         return isset($_SESSION[$key]);
     }
 
-    public static function push(string $key, mixed $value)
+    public static function push(string $key, mixed $value): void
     {
         if (in_array(needle: $value, haystack: $_SESSION[$key] ?? [])) {
             return;
@@ -48,17 +48,18 @@ class Session
         $_SESSION[$key][] = $value;
     }
 
-    public static function count(string $key)
+    public static function count(string $key): int
     {
         return count($_SESSION[$key] ?? []);
     }
 
-    public static function clear()
+    public static function clear(): void
     {
         $_SESSION = [];
     }
 
-    public static function all()
+    /** @return array<string, mixed> */
+    public static function all(): array
     {
         return $_SESSION;
     }
@@ -68,7 +69,7 @@ class Session
         self::set(key: 'flash', value: $value);
     }
 
-    public static function getFlash()
+    public static function getFlash(): mixed
     {
         $flash = self::get(key: 'flash');
         self::remove(key: 'flash');

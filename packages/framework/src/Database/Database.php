@@ -8,8 +8,9 @@ use Exception;
 
 class Database
 {
-    private static $config = null;
-    private static $connection = null;
+    /** @var array<string, mixed>|null */
+    private static ?array $config = null;
+    private static ?string $connection = null;
 
     private static function loadConfig(): void
     {

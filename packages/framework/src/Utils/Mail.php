@@ -5,8 +5,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Mail
 {
-    private static $config = null;
-    private static $provider = null;
+    /** @var array<string, mixed>|null */
+    private static ?array $config = null;
+    private static ?string $provider = null;
 
     public static function config(): void
     {

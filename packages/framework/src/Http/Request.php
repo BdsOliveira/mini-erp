@@ -26,6 +26,7 @@ class Request
         return htmlspecialchars($_REQUEST[$key] ?? '', ENT_QUOTES, 'UTF-8');
     }
 
+    /** @return array<string, string> */
     public static function all(): array
     {
         $data = [];
