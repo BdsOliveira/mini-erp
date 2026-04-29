@@ -1,7 +1,7 @@
 <?php
 
-use Framework\Aplicattion;
+use Framework\Application;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-Aplicattion::execute();
+Application::execute();

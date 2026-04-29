@@ -4,15 +4,15 @@ namespace Framework;
 
 use Framework\Database\Connection;
 use Framework\Http\Router;
-use Framework\Utils\Enviroment;
+use Framework\Utils\Environment;
 use Framework\Utils\Mail;
 use Framework\Utils\Session;
 
-class Aplicattion
+class Application
 {
     public static function execute(): void
     {
-        Enviroment::load();
+        Environment::load();
         Connection::getInstance();
         Session::start();
         Mail::config();

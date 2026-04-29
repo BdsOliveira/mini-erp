@@ -15,7 +15,7 @@ A aplicação é dividida em contextos de negócio independentes (módulos). Cad
 
 ## 2. O Framework (`packages/framework/`)
 O núcleo do sistema utiliza um framework minimalista:
-- **Bootstrap (`Aplicattion.php`):** Inicialização global.
+- **Bootstrap (`Application.php`):** Inicialização global.
 - **Roteamento Dinâmico:** O arquivo `routes/web.php` atua como um agregador automático. Ele percorre todos os módulos em `app/Modules/` e carrega os arquivos `routes.php` individuais.
 - **View Engine:** Renderização via Traits no `BaseController`.
 

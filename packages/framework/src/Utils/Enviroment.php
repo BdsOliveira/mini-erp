@@ -6,7 +6,7 @@ namespace Framework\Utils;
 
 use Dotenv\Dotenv;
 
-class Enviroment
+class Environment
 {
     public static function load(): void
     {
