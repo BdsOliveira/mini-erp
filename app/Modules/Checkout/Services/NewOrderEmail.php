@@ -7,7 +7,7 @@ use Framework\Utils\Mail;
 
 class NewOrderEmail extends BaseRepository
 {
-    public function excute(float $total, string $status)
+    public function execute(float $total, string $status)
     {
         Mail::send(
             to: 'gestao@example.com',

@@ -5,12 +5,12 @@ namespace App\Modules\Catalog\Models;
 readonly class Product
 {
     public function __construct(
-        public ?int $id = 0,
         public string $nome,
         public string $descricao,
         public float $preco,
-        public ?string $imagem = '',
         public int $status,
+        public ?int $id = null,
+        public ?string $imagem = null,
     ) {
     }
 

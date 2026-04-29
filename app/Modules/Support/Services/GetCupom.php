@@ -8,7 +8,7 @@ use Framework\Utils\Session;
 
 class GetCupom extends BaseRepository
 {
-    public function excute(string $codigo): array
+    public function execute(string $codigo): array
     {
         $codigo = strtoupper($codigo);
         $query = 'SELECT * FROM cupons WHERE codigo = :codigo AND ativo = 1 LIMIT 1';

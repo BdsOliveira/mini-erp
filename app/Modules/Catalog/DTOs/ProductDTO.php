@@ -19,7 +19,7 @@ readonly class ProductDTO
         $this->id = (int) $data['id'];
         $this->nome = $data['nome'];
         $this->descricao = $data['descricao'] ?? '';
-        $this->preco = (float) $data['preco'] ?? 0;
+        $this->preco = (float) ($data['preco'] ?? 0);
         $this->imagem = $data['imagem'] ?? '';
         $this->status = (int) $data['status'] ?: 1;
     }

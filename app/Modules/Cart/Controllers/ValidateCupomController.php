@@ -13,7 +13,7 @@ class ValidateCupomController extends BaseController
 {
     public function execute(): void
     {
-        $cupom = (new GetCupom())->excute(codigo: Request::get('cupom') ?? '');
+        $cupom = (new GetCupom())->execute(codigo: Request::get('cupom'));
         
         Session::set(key: 'cupom', value: $cupom['cupom']);
         Session::set(key: 'desconto', value: $cupom['desconto']);

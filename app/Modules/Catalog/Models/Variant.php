@@ -5,11 +5,11 @@ namespace App\Modules\Catalog\Models;
 readonly class Variant
 {
     public function __construct(
-        public ?int $id = 0,
         public int $produto_id,
         public string $tipo,
         public string $valor,
         public string $sku,
+        public ?int $id = null,
     ) {
     }
 

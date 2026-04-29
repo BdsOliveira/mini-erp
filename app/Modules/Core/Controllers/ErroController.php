@@ -8,8 +8,8 @@ use App\Modules\Core\Base\BaseController;
 
 class ErroController extends BaseController
 {
-    public function notFound()
+    public function notFound(): void
     {
-        return $this->render('errors/not-found.php');
+        $this->render('errors/not-found.php');
     }
 }

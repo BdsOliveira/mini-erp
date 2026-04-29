@@ -8,8 +8,8 @@ use App\Modules\Core\Base\BaseController;
 
 class HomeController extends BaseController
 {
-    public function index()
+    public function index(): void
     {
-        return $this->render('index.php');
+        $this->render('index.php');
     }
 }

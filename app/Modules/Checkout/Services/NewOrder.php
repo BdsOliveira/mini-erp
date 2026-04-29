@@ -21,7 +21,7 @@ class NewOrder extends BaseRepository
         $statement->execute();
         $pedido = $statement->fetch();
 
-        (new NewOrderEmail())->excute(total: $total, status: $pedido['status']);
+        (new NewOrderEmail())->execute(total: $total, status: $pedido['status']);
 
         return $pedido;
     }

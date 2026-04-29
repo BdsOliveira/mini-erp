@@ -22,10 +22,9 @@ trait HasTemplate
 
         $this->twig = new Environment($loader);
 
-        $lexer = new Lexer(
-            $this->twig,
-            $this->functions(),
-        );
+        $this->registerFunctions();
+
+        $lexer = new Lexer($this->twig);
 
         $this->twig->setLexer($lexer);
     }
@@ -35,15 +34,13 @@ trait HasTemplate
         echo $this->twig->render($template, $data);
     }
 
-    public function functions(): array
+    private function registerFunctions(): void
     {
         if (!function_exists('dd')) {
             require_once __DIR__ . '/../functions/dd.php';
         }
-        return [
-            $this->twig->addFunction(new TwigFunction('dd', fn(array $data) => dd($data))),
-            $this->twig->addFunction(new TwigFunction('getCartItemsQtd', fn() => $this->getCartItemsQtd())),
-        ];
+        $this->twig->addFunction(new TwigFunction('dd', fn(array $data) => dd($data)));
+        $this->twig->addFunction(new TwigFunction('getCartItemsQtd', fn() => $this->getCartItemsQtd()));
     }
 
     public function getCartItemsQtd(): int
