@@ -6,7 +6,7 @@ use App\Modules\Core\Base\BaseRepository;
 
 class NewOrder extends BaseRepository
 {
-    public function excute(float $total)
+    public function execute(float $total)
     {
         $query = 'INSERT INTO pedidos (user_id, total, status) VALUES (:user_id, :total, "APROVADO")';
         $statement = $this->connection->prepare($query);

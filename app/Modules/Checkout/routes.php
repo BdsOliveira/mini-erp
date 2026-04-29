@@ -1,17 +1,17 @@
 <?php
 
-use App\Modules\Checkout\Controllers\CheckoutController;
-use App\Modules\Checkout\Controllers\PedidosController;
+use App\Modules\Checkout\Controllers\Actions\ListCheckoutController;
+use App\Modules\Checkout\Controllers\Actions\StoreCheckoutController;
+use App\Modules\Checkout\Controllers\Actions\WebhookCheckoutController;
+use App\Modules\Checkout\Controllers\Actions\ListOrdersController;
 
 return [
     "GET" => [
-        "/checkout" => [CheckoutController::class, "index"],
-        "/pedidos" => [PedidosController::class, "index"],
-        "/pedidos/criar" => [PedidosController::class, "create"],
+        "/checkout" => [ListCheckoutController::class, "execute"],
+        "/pedidos" => [ListOrdersController::class, "execute"],
     ],
     "POST" => [
-        "/checkout" => [CheckoutController::class, "store"],
-        "/pedidos" => [PedidosController::class, "store"],
-        "/webhook" => [CheckoutController::class, "webhook"],
+        "/checkout" => [StoreCheckoutController::class, "execute"],
+        "/webhook" => [WebhookCheckoutController::class, "execute"],
     ]
 ];

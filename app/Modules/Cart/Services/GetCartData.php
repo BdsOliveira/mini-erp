@@ -6,7 +6,7 @@ use Framework\Utils\Session;
 
 class GetCartData
 {
-    public static function excute(array $products): array
+    public static function execute(array $products): array
     {
         $subtotal = array_sum(array_column($products, 'preco'));
         Session::set(key: 'subtotal', value: $subtotal);
