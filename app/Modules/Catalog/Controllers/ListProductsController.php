@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace App\Modules\Catalog\Controllers;
 
 use App\Modules\Core\Base\BaseController;
-use App\Modules\Catalog\Repositories\ProductsRepository;
+use App\Modules\Catalog\Repositories\Products\GetPaginated;
 
 class ListProductsController extends BaseController
 {
-    private $productsRepository;
+    private $repository;
 
     public function __construct()
     {
         parent::__construct();
-        $this->productsRepository = new ProductsRepository();
+        $this->repository = new GetPaginated();
     }
 
     public function execute(): void
     {
-        $products = $this->productsRepository->getPaginated();
+        $products = $this->repository->execute();
         $this->render('produtos/index.php', ['products' => $products]);
     }
 }

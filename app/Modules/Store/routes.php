@@ -1,10 +1,10 @@
 <?php
 
-use App\Modules\Store\Controllers\LojaController;
+use App\Modules\Store\Controllers\ListStoreController;
 
 return [
     "GET" => [
-        '' => [LojaController::class, "index"],
+        '' => [ListStoreController::class, "execute"],
     ],
     "POST" => []
 ];
