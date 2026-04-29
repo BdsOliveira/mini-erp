@@ -1,65 +1,32 @@
 <?php
 
-use App\Modules\Cart\Controllers\CarrinhoController;
-use App\Modules\Checkout\Controllers\CheckoutController;
-use App\Modules\Core\Controllers\ErroController;
-use App\Modules\Store\Controllers\LojaController;
-use App\Modules\Core\Controllers\HomeController;
-use App\Modules\Checkout\Controllers\PedidosController;
-use App\Modules\Catalog\Controllers\ProdutosController;
-use App\Modules\Scheduling\Controllers\SchedulingController;
+/**
+ * Agregador de Rotas Modular
+ * Este arquivo percorre todos os módulos em app/Modules e carrega seus arquivos routes.php
+ */
 
-$get_store_routes = [
-    '' => [LojaController::class, "index"],
+$modulesPath = dirname(__DIR__) . '/app/Modules';
+$modules = array_diff(scandir($modulesPath), ['.', '..']);
 
-    "/carrinho" => [CarrinhoController::class, "index"],
-
-    "/checkout" => [CheckoutController::class, "index"],
-
-    "/agendamento" => [SchedulingController::class, "index"],
+$allRoutes = [
+    "GET" => [],
+    "POST" => []
 ];
 
-$get_admin_routes = [
-    "/admin" => [HomeController::class, "index"],
+foreach ($modules as $module) {
+    $routeFile = "$modulesPath/$module/routes.php";
+    
+    if (file_exists($routeFile)) {
+        $moduleRoutes = include $routeFile;
+        
+        if (isset($moduleRoutes['GET'])) {
+            $allRoutes['GET'] = array_merge($allRoutes['GET'], $moduleRoutes['GET']);
+        }
+        
+        if (isset($moduleRoutes['POST'])) {
+            $allRoutes['POST'] = array_merge($allRoutes['POST'], $moduleRoutes['POST']);
+        }
+    }
+}
 
-    "/pedidos" => [PedidosController::class, "index"],
-    "/pedidos/criar" => [PedidosController::class, "create"],
-
-    "/produtos" => [ProdutosController::class, "index"],
-    "/produtos/criar" => [ProdutosController::class, "create"],
-    "/produtos/editar" => [ProdutosController::class, "edit"],
-    "/produtos/variacoes" => [ProdutosController::class, "variants"],
-    "/produtos/variacoes/editar" => [ProdutosController::class, "getProductVariant"],
-
-    "/not-found" => [ErroController::class, "notFound"],
-];
-
-$post_admin_routes = [
-    "/pedidos" => [PedidosController::class, "store"],
-
-    "/produtos" => [ProdutosController::class, "store"],
-    "/produtos/update" => [ProdutosController::class, "update"],
-    "/produtos/variacoes/cadastrar" => [ProdutosController::class, "storeVariants"],
-    "/produtos/variacoes/update" => [ProdutosController::class, "updateVariant"],
-
-    "/webhook" => [CheckoutController::class, "webhook"],
-];
-
-$post_store_routes = [
-    "/carrinho" => [CarrinhoController::class, "addToCart"],
-    "/carrinho/validar-cupom" => [CarrinhoController::class, "validateCupom"],
-    "/carrinho/delete-item" => [CarrinhoController::class, "deleteItem"],
-
-    "/checkout" => [CheckoutController::class, "store"],
-];
-
-return [
-    "GET" => [
-        ...$get_admin_routes,
-        ...$get_store_routes,
-    ],
-    "POST" => [
-        ...$post_admin_routes,
-        ...$post_store_routes,
-    ],
-];
+return $allRoutes;
