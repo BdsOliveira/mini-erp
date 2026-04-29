@@ -5,10 +5,15 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Framework\\": "framework/"
+            "App\\": "app/"
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/framework"
+        }
+    ],
     "authors": [
         {
             "name": "BdsOliveira",
@@ -17,8 +22,8 @@
     ],
     "require": {
         "php": "^8.4",
-        "twig/twig": "^3.21",
-        "vlucas/phpdotenv": "^5.6",
-        "phpmailer/phpmailer": "^6.10"
-    }
+        "bdsoliveira/framework": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

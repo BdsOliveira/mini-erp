@@ -14,7 +14,8 @@ class Database
     private static function loadConfig(): void
     {
         if (self::$config === null) {
-            self::$config = include __DIR__ . '/../../config/database.php';
+            $root = dirname(getcwd());
+            self::$config = include $root . '/config/database.php';
             self::$connection = $_ENV['DB_CONNECTION'] ?? self::$config['default'];
         }
     }

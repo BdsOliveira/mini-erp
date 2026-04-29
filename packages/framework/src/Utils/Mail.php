@@ -11,7 +11,8 @@ class Mail
     public static function config(): void
     {
         if (self::$config === null) {
-            self::$config = include __DIR__ . '/../../config/mail.php';
+            $root = dirname(getcwd());
+            self::$config = include $root . '/config/mail.php';
             self::$provider = $_ENV['MAIL_PROVIDER'] ?? self::$config['smtp'];
         }
     }
