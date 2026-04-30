@@ -22,19 +22,19 @@ O SDD resolve isso forçando a clareza **antes** do código.
 [Ideia / Problema]
       │
       ▼
-[1. DRAFT da Spec]    ← Autor escreve usando spec-template.md
+[1. Draft]                ← Autor escreve usando spec-template.md
       │
       ▼
-[2. REVIEW]           ← Time revisa: casos de uso, regras, contratos
+[2. In Review]            ← Time revisa: casos de uso, regras, contratos
       │
       ▼
-[3. APPROVED]         ← Spec congelada, pronta para implementação
+[3. Ready for Development] ← Spec congelada, pronta para implementação
       │
       ▼
-[4. IMPLEMENTED]      ← Código entregue, DoD checado, testes passando
+[4. Implemented]          ← Código entregue, DoD checado, testes passando
       │
       ▼
-[5. DEPRECATED]       ← (se a feature for removida ou substituída)
+[5. Deprecated]           ← (se a feature for removida ou substituída)
 ```
 
 ---
@@ -51,13 +51,13 @@ O SDD resolve isso forçando a clareza **antes** do código.
 
 ## Regras do Processo
 
-1. **Spec primeiro.** Nenhum `Controller`, `Service` ou `Repository` é criado sem uma spec em status `Approved`.
+1. **Spec primeiro.** Nenhum `Controller`, `Service` ou `Repository` é criado sem uma spec em status `Ready for Development`.
 
 2. **Spec como contrato.** Se durante a implementação um requisito mudar, a spec deve ser atualizada e re-aprovada antes de continuar.
 
-3. **Rastreabilidade.** O nome do arquivo da spec serve como identificador. Use o ID da spec em commits:
+3. **Rastreabilidade.** O número da pasta da spec serve como identificador. Use o ID da spec em commits:
    ```
-   feat(SPEC-001): implement coupon creation service
+   feat(SPEC-001): implement multi-template system
    ```
 
 4. **DoD é obrigatório.** A spec só vai para `Implemented` quando **todos** os itens da checklist de Critérios de Aceite estiverem marcados.
@@ -70,39 +70,52 @@ O SDD resolve isso forçando a clareza **antes** do código.
 
 ```
 docs/specs/
-├── spec-template.md          ← Template base para novas specs
-├── sdd-process.md            ← Este arquivo
-└── features/
-    ├── SPEC-001-[slug].md    ← Specs por feature
-    ├── SPEC-002-[slug].md
-    └── ...
+├── spec-template.md              ← Template base para novas specs
+├── sdd-process.md                ← Este arquivo
+├── 001-multi-template/
+│   └── spec.md                   ← Spec da feature
+├── 002-[slug]/
+│   └── spec.md
+└── ...
 ```
 
-### Nomenclatura de arquivos
+### Nomenclatura de pastas
 
 ```
-SPEC-{número sequencial}-{slug-da-feature}.md
+{número sequencial}-{slug-da-feature}/
 ```
 
 **Exemplos:**
-- `SPEC-001-coupon-management.md`
-- `SPEC-002-order-refund.md`
-- `SPEC-003-product-variants.md`
+- `001-multi-template/`
+- `002-order-refund/`
+- `003-product-variants/`
+
+### Cabeçalho obrigatório em toda spec
+
+```markdown
+# [SPEC-NNN] Título da Feature
+
+- **Status:** `Draft`
+- **Módulo:** `caminho/do/modulo/`
+- **Criado em:** YYYY-MM-DD
+- **Autor:** Nome do Autor
+```
 
 ---
 
 ## Como criar uma nova Spec
 
-1. Copie o template:
+1. Crie a pasta e copie o template:
    ```bash
-   cp docs/specs/spec-template.md docs/specs/features/SPEC-XXX-nome-da-feature.md
+   mkdir docs/specs/NNN-nome-da-feature
+   cp docs/specs/spec-template.md docs/specs/NNN-nome-da-feature/spec.md
    ```
 
 2. Preencha **todas** as seções. Seções em branco indicam spec incompleta.
 
 3. Defina o status como `Draft` e abra para revisão.
 
-4. Após aprovação do time, mude para `Approved` e inicie a implementação.
+4. Após aprovação do time, mude para `Ready for Development` e inicie a implementação.
 
 ---
 
