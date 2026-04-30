@@ -22,6 +22,7 @@ Visão consolidada de todas as specs do projeto. Atualizar sempre que uma spec m
 |----|--------|--------|--------|-------|-----------|
 | [SPEC-001](./001-multi-template/spec.md) | Sistema de Múltiplos Templates de UI | `Ready for Development` | `packages/framework/src/View/` | Bruno Oliveira | 2026-04-29 |
 | [SPEC-002](./002-autenticacao/spec.md) | Autenticação do Sistema | `Draft` | `app/Modules/Auth/`, `Admin/`, `Account/` | Bruno Oliveira | 2026-04-29 |
+| [SPEC-003](./003-bio-link-aggregator/spec.md) | Página Bio — Agregador de Links | `Draft` | `app/Modules/Bio/` | Bruno Oliveira | 2026-04-29 |
 
 ---
 
